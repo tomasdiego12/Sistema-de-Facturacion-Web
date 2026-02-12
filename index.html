@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Facturacion Web</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>🛒 Supermercado JS</h1>
+    </header>
+
+    <main class="main-container">
+        
+        <section id="container-products">
+            </section>
+
+        <aside class="shopping-cart">
+            <h2>Ticket de Compra</h2>
+            <ul id="shopping-cart-list"></ul>
+
+            <div class="total-pay">
+                Total: $<span id="total-price">0</span>
+            </div>
+
+            <button id="btn-buy">Finalizar Compra</button>
+        </aside>
+    </main>
+
+    <script src="./js/database.js"></script>
+    <script src="./js/app.js"></script>
+</body>
+</html>
