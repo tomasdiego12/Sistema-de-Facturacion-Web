@@ -32,3 +32,11 @@ img {
     padding: 10px 10px;
     cursor: pointer;
 }
+#buscador {
+    margin: 10px 0;
+    margin-top: 10px;;
+    padding: 8px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
