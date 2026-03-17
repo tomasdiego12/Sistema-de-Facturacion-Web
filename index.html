@@ -25,13 +25,17 @@
             <ul id="shopping-cart-list"></ul>
 
             <div class="total-pay">
-                Total: $<span id="total-price">0</span>
+                <p>SubTotal: <span id="subtotal-price">0.00</span></p>
+                <p>Descuento: <span id="discount-price">0.00</span></p>
+                <p>Iva: <span id="iva-price">0.00</span></p>
+
+                <hr><h3>Total: $<span id="total-price">0</span></h3> 
             </div>
 
             <button id="btn-buy">Finalizar Compra</button>
         </aside>
     </main>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <script src="./js/app.js"></script>
+    <script type="module" src="./js/ui.js"></script>
 </body>
 </html>
