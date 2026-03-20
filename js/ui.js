@@ -10,7 +10,10 @@ import { calcularTotal } from "./facturacion.js";
 const contenedor = document.getElementById("container-products");
 const listaCarrito = document.getElementById("shopping-cart-list");
 const elementoTotal = document.getElementById("total-price");
-
+const precioSubtotal = document.getElementById("subtotal-price");
+const precioDescuento = document.getElementById("discount-price");
+const precioIVA = document.getElementById("iva-price");
+const finalizarLaCompra = document.getElementById("btn-buy");
 // 2. Función para cargar productos en la interfaz
 export function renderizarProductos(listaDeProductos) {
     contenedor.innerHTML = '';
@@ -65,8 +68,11 @@ export function mostrarCarrito() {
     });
 
     // Calculamos y mostramos el total final
-    const total = calcularTotal(carrito);
-    elementoTotal.innerText = `Total: $${total.toFixed(2)}`; 
+    const recibo = calcularTotal(carrito);
+    elementoTotal.innerText = recibo.totalFinal; 
+    precioSubtotal.innerText = recibo.subTotal;
+    precioDescuento.innerText = recibo.descuento;
+    precioIVA.innerText = recibo.iva;
 }
 // 5. Logica de busqueda de productos
 const inputBusqueda = document.getElementById('buscador');
@@ -79,7 +85,39 @@ inputBusqueda.addEventListener('input', (evento) => {
     });
     renderizarProductos(productosFiltrados);
 });
-// 6. Arranque de la aplicación
+
+// 6. Evento para finalizar la compra
+finalizarLaCompra.addEventListener('click', () => {
+    // Si el carrito está vacío, mostramos un mensaje de error y no procedemos con la compra
+    if (carrito.length === 0) {
+        Toastify ({
+            text: "El carrito está vacío. Agrega productos para finalizar la compra.",
+            duration: 3000,
+            gravity: "top",
+            position: "right",
+            style: {
+                background: "linear-gradient(to right, #ff0000, #8b0000)",
+                color: "white",
+            }
+        }).showToast();
+        return;
+    }
+    // Si el carrito tiene productos, mostramos un mensaje de éxito y limpiamos el carrito
+    Toastify ({
+        text: "¡Compra finalizada con éxito! Gracias por elegirnos.",
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d)",
+            color: "white",
+        }
+    }).showToast();
+    carrito.length = 0;
+    mostrarCarrito();
+
+});
+// 7. Arranque de la aplicación
 cargarProductos().then((productos) => {
     renderizarProductos(productos);
     mostrarCarrito(); // Dibujamos el carrito guardado apenas entramos a la página
